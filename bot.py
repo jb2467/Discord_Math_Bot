@@ -4,7 +4,7 @@ import calculator
 from matrix import Matrix
 import matrix
 
-BOT_TOKEN = ''
+BOT_TOKEN = 'MTExMTg1NTk0MDM5NjkyNTA4MA.GD3IBv.OR1sKOSOhNtJ1FlHqhRwfDLw4xAbAk-z4xNnAk'
 CHANNEL_ID = 1113263431299117137
 
 bot = commands.Bot(command_prefix="!",  intents=discord.Intents.all())

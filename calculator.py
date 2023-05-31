@@ -71,11 +71,13 @@ def multiply_matrices(matrices):
     new_data = []
     steps = f'Step 0 : \n{matrix1} _times_ \n{matrix2}\n'
     i = 1
+    x = 0
+    y = 0
     if matrix2.row_count == matrix1.col_count:
         for r in range (matrix1.row_count):
             for c in range(matrix2.col_count):
                 sum = 0
-                steps += f'Step {i} : '
+                steps += f'Step {i} : in the new matrx at ({x},{y}) = '
                 for k in range (matrix2.row_count):
                     steps += f'{matrix1.data_set[r][k]} * {matrix2.data_set[k][c]}'
                     if k == matrix2.row_count-1:
@@ -83,9 +85,13 @@ def multiply_matrices(matrices):
                     else:
                          steps += ' + '
                     sum += matrix1.data_set[r][k] * matrix2.data_set[k][c]
-                i += 1
-                steps += '\n'
                 new_data.append(sum)
+                v = i - 1
+                i += 1
+                y+=1
+                steps += f' = {new_data[v]}\n'
+            x+=1
+            y=0
         m = Matrix(matrix1.row_count,matrix2.col_count,new_data)
         steps += '\n'
         return m, steps

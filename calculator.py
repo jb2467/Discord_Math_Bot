@@ -114,5 +114,17 @@ def matrix_power_to(matrix, power):
         j = i +2
         steps += f'Power : {j} \n{s}{m1} '
     return m1,steps
+def matrix_transpose(matrix):
+    new_data = []
+    steps = f'Step 0 :Transpose\n{matrix}\n'
+    i = 1
+    for c in range(matrix.col_count):
+        for r in range(matrix.row_count):
+            steps += f'Step {i} : New matrix at ({c}) ({r}) = {matrix.data_set[r][c]}\n'
+            i+=1
+            new_data.append(matrix.data_set[r][c])
+    steps += '\n'
+    m = Matrix(matrix.col_count,matrix.row_count,new_data)
+    return m,steps
 
     

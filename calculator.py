@@ -112,7 +112,7 @@ def matrix_power_to(matrix, power):
         l.append(m2)
         m1,s = multiply_matrices(l)
         j = i +2
-        steps += f'Power : {j} \n {s} \n'
+        steps += f'Power : {j} \n{s}{m1} '
     return m1,steps
 
     

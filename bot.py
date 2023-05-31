@@ -1,9 +1,10 @@
 from discord.ext import commands, tasks
 import discord
 import calculator
+from matrix import Matrix
+import matrix
 
-
-BOT_TOKEN = 'MTExMTg1NTk0MDM5NjkyNTA4MA.G_7iDb.TXjttrfLVDdOk-jmal0Iuv9Brr0VsFo9pZ9ibg'
+BOT_TOKEN = 'MTExMTg1NTk0MDM5NjkyNTA4MA.GnJ8hw.Lpba5__8WVtibtNthduhmDFS9rG1g7ilTPAZAo'
 CHANNEL_ID = 1113263431299117137
 
 bot = commands.Bot(command_prefix="!",  intents=discord.Intents.all())
@@ -53,11 +54,37 @@ def run_math_bot():
         string = ''
         index = 0
         for element in c:
-            string += f'Step{index}: {element}  \n'
+            string += f'Step {index}: {element}  \n'
             index+=1
         string += 'Final answer!: ' +str(eval(c[-1]))
         await ctx.send(string)
-    
+    @bot.command()
+    async def matrixAdd(ctx, *arr):
+        l,c = matrix.make_matrices(arr)
+        if c == 2:
+            p,s = calculator.add_matrices(l)
+            if p :
+                await ctx.send(f'{s}{p}')
+            else:
+                await ctx.send('`You can not add these matrices, check the dimensions. The Matricies must have the same number of rows and the same number of coloumns`')
+        else:
+            await ctx.send('There are not enough matrices')
+        
+
+    @bot.command()
+    async def matrixSubtract(ctx, *arr):
+        l,c = matrix.make_matrices(arr)
+        if c == 2:
+            p,s = calculator.subtract_matrices(l)
+            if p :
+                await ctx.send(f'{s}{p}')
+            else:
+                await ctx.send('`You can not subtract these matrices, check the dimensions. The Matricies must have the same number of rows and the same number of coloumns`')
+        else:
+            await ctx.send('There are not enough matrices')
+        
+
+
     @bot.command()
     async def griddy(ctx):
         embed = discord.Embed(

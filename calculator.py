@@ -1,3 +1,5 @@
+from matrix import Matrix
+import matrix
 def matching_parentheses(string):
     opening = []
     pairs = []
@@ -31,4 +33,36 @@ def calculate(arr:list):
         steps.append( text + '\n')
         m = matching_parentheses(text)
     return (steps)
-    
+def add_matrices(matrices):
+    matrix1 = matrices[0]
+    matrix2 = matrices[1]
+    new_data = []
+    steps = f'Step 0 : \n{matrix1} + \n{matrix2}\n'
+    i = 1
+    if matrix1.row_count == matrix2.row_count and matrix1.col_count == matrix2.col_count:
+        for r in range (matrix1.row_count):
+            for c in range(matrix1.col_count):
+                steps += f'Step {i} : New matrix at ({r}) ({c}) = {matrix1.data_set[r][c]} + {matrix2.data_set[r][c]} \n'
+                i += 1
+                new_data.append(matrix1.data_set[r][c] + matrix2.data_set[r][c])
+        m = Matrix(matrix1.row_count,matrix1.col_count,new_data)
+        return m,steps
+    else:
+        return False
+def subtract_matrices(matrices):
+    matrix1 = matrices[0]
+    matrix2 = matrices[1]
+    new_data = []
+    print(matrix2)
+    steps = f'Step 0 : \n{matrix1} minus \n{matrix2}\n'
+    i = 1
+    if matrix1.row_count == matrix2.row_count and matrix1.col_count == matrix2.col_count:
+        for r in range (matrix1.row_count):
+            for c in range(matrix1.col_count):
+                steps += f'Step {i} : New matrix at ({r}) ({c}) = {matrix1.data_set[r][c]} - {matrix2.data_set[r][c]} \n'
+                i += 1
+                new_data.append(matrix1.data_set[r][c] - matrix2.data_set[r][c])
+        m = Matrix(matrix1.row_count,matrix1.col_count,new_data)
+        return m,steps
+    else:
+        return False

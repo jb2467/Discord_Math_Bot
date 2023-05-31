@@ -4,7 +4,7 @@ import calculator
 from matrix import Matrix
 import matrix
 
-BOT_TOKEN = 'MTExMTg1NTk0MDM5NjkyNTA4MA.GD3IBv.OR1sKOSOhNtJ1FlHqhRwfDLw4xAbAk-z4xNnAk'
+BOT_TOKEN = 
 CHANNEL_ID = 1113263431299117137
 
 bot = commands.Bot(command_prefix="!",  intents=discord.Intents.all())
@@ -94,11 +94,22 @@ def run_math_bot():
         else:
             await ctx.send('There are not enough matrices')
 
-
-            
-    
-
-
+    @bot.command()
+    async def matrixPower(ctx, *arr):
+        temp = ''
+        for element in arr:
+            temp += str(element) + ' '
+        spl = temp.split(' , ')
+        m = spl[0]
+        i = m.find('x')
+        j = m.find(' ')
+        row = int(m[:i])
+        col = int(m[i+1:j])
+        data_set = m[j+1:].split(' ')
+        power = int(spl[-1])
+        matrix = Matrix(row,col,data_set)
+        p,c = calculator.matrix_power_to(matrix, power)
+        await ctx.send(f'{c}')
     @bot.command()
     async def griddy(ctx):
         embed = discord.Embed(

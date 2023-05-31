@@ -97,5 +97,22 @@ def multiply_matrices(matrices):
         return m, steps
     else:
         return False, False
+def matrix_power_to(matrix, power):
+    m1 = matrix
+    m2 = matrix
+    steps = ''
+    # It needs to be one less because the program uses ( power + 1 ) amount of matrix mulitplication 
+    count = power -1
+    j = 0
+    for i in range (count):
+        print(i)
+        l = []
+        print(m1)
+        l.append(m1)
+        l.append(m2)
+        m1,s = multiply_matrices(l)
+        j = i +2
+        steps += f'Power : {j} \n {s} \n'
+    return m1,steps
 
     

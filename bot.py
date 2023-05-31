@@ -4,7 +4,7 @@ import calculator
 from matrix import Matrix
 import matrix
 
-BOT_TOKEN = 'MTExMTg1NTk0MDM5NjkyNTA4MA.GnJ8hw.Lpba5__8WVtibtNthduhmDFS9rG1g7ilTPAZAo'
+BOT_TOKEN = ''
 CHANNEL_ID = 1113263431299117137
 
 bot = commands.Bot(command_prefix="!",  intents=discord.Intents.all())
@@ -82,7 +82,21 @@ def run_math_bot():
                 await ctx.send('`You can not subtract these matrices, check the dimensions. The Matricies must have the same number of rows and the same number of coloumns`')
         else:
             await ctx.send('There are not enough matrices')
-        
+    @bot.command()
+    async def matrixMultiply(ctx, *arr):
+        l,c = matrix.make_matrices(arr)
+        if c == 2:
+            p,s = calculator.multiply_matrices(l)
+            if p:
+                await ctx.send(f'{s}{p}')
+            else:
+                await ctx.send('`You can not multiply these matrices, check the dimensions`')
+        else:
+            await ctx.send('There are not enough matrices')
+
+
+            
+    
 
 
     @bot.command()

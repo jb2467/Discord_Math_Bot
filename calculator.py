@@ -48,12 +48,11 @@ def add_matrices(matrices):
         m = Matrix(matrix1.row_count,matrix1.col_count,new_data)
         return m,steps
     else:
-        return False
+        return False, False
 def subtract_matrices(matrices):
     matrix1 = matrices[0]
     matrix2 = matrices[1]
     new_data = []
-    print(matrix2)
     steps = f'Step 0 : \n{matrix1} minus \n{matrix2}\n'
     i = 1
     if matrix1.row_count == matrix2.row_count and matrix1.col_count == matrix2.col_count:
@@ -65,4 +64,32 @@ def subtract_matrices(matrices):
         m = Matrix(matrix1.row_count,matrix1.col_count,new_data)
         return m,steps
     else:
-        return False
+        return False, False
+def multiply_matrices(matrices):
+    matrix1 = matrices[0]
+    matrix2 = matrices[1]
+    new_data = []
+    steps = f'Step 0 : \n{matrix1} _times_ \n{matrix2}\n'
+    i = 1
+    if matrix2.row_count == matrix1.col_count:
+        for r in range (matrix1.row_count):
+            for c in range(matrix2.col_count):
+                sum = 0
+                steps += f'Step {i} : '
+                for k in range (matrix2.row_count):
+                    steps += f'{matrix1.data_set[r][k]} * {matrix2.data_set[k][c]}'
+                    if k == matrix2.row_count-1:
+                        pass
+                    else:
+                         steps += ' + '
+                    sum += matrix1.data_set[r][k] * matrix2.data_set[k][c]
+                i += 1
+                steps += '\n'
+                new_data.append(sum)
+        m = Matrix(matrix1.row_count,matrix2.col_count,new_data)
+        steps += '\n'
+        return m, steps
+    else:
+        return False, False
+
+    

@@ -15,9 +15,7 @@ class Matrix():
             for j in range(self.col_count):
                 rowList.append(int(dataList[index]))
                 index += 1
-
             mat.append(rowList)
-
         return mat
     def __str__(self) -> str:
         string = ''

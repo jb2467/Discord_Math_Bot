@@ -126,5 +126,31 @@ def matrix_transpose(matrix):
     steps += '\n'
     m = Matrix(matrix.col_count,matrix.row_count,new_data)
     return m,steps
+def matrix_determinant(matrix):
+    steps = f'Step 0 : Determinant of\n{matrix}\n'
+    x = 1
+    row = matrix.row_count
+    new_matrix = (matrix)
+    for fd in range(row): 
+        for i in range(fd+1,row): 
+            if new_matrix.data_set[fd][fd] == 0:
+                new_matrix.data_set[fd][fd] == 0 
+            crScaler = new_matrix.data_set[i][fd] / new_matrix.data_set[fd][fd] 
+            for j in range(row): 
+                steps+= f'Step {x}: {new_matrix.data_set[i][j]} - ({new_matrix.data_set[i][fd]} / {new_matrix.data_set[fd][fd]}) * {new_matrix.data_set[fd][j]}'
+                new_matrix.data_set[i][j] = new_matrix.data_set[i][j] - crScaler * new_matrix.data_set[fd][j]
+            steps+= f'\n'
+            x+=1
+    steps += f'Step {x} : '
+    product = 1
+    for i in range(row):
+        steps += f'{product} * {new_matrix.data_set[i][i]}'
+        product *= new_matrix.data_set[i][i] 
+    steps += f'\nFinal answer: {product}'
+    return steps
+
+
+
+
 
     

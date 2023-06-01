@@ -5,7 +5,7 @@ from matrix import Matrix
 import matrix
 
 BOT_TOKEN = ''
-CHANNEL_ID = 1113263431299117137
+CHANNEL_ID = 
 
 bot = commands.Bot(command_prefix="!",  intents=discord.Intents.all())
 bot.remove_command('help')
@@ -110,6 +110,21 @@ def run_math_bot():
         matrix = Matrix(row,col,data_set)
         p,c = calculator.matrix_power_to(matrix, power)
         await ctx.send(f'{c}')
+    @bot.command()
+    async def matrixTranspose(ctx, *arr):
+        l,c = matrix.make_matrices(arr)
+        m,s = calculator.matrix_transpose(l[0])
+        await ctx.send(f'{s}{m}')
+    @bot.command()
+    async def matrixDeterminant(ctx, *arr):
+        l,c = matrix.make_matrices(arr)
+        s = calculator.matrix_determinant(l[0])
+        await ctx.send(f'{s}')
+    @bot.command()
+    async def matrixInverse(ctx, *arr):
+        l,c = matrix.make_matrices(arr)
+        s = calculator.matrix_inverse(l[0])
+        await ctx.send(f'{s}')
     @bot.command()
     async def griddy(ctx):
         embed = discord.Embed(

@@ -148,9 +148,4 @@ def matrix_determinant(matrix):
         product *= new_matrix.data_set[i][i] 
     steps += f'\nFinal answer: {product}'
     return steps
-
-
-
-
-
     

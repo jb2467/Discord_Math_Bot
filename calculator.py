@@ -136,16 +136,25 @@ def matrix_determinant(matrix):
             if new_matrix.data_set[fd][fd] == 0:
                 new_matrix.data_set[fd][fd] == 0 
             crScaler = new_matrix.data_set[i][fd] / new_matrix.data_set[fd][fd] 
+            steps+= f'Step {x}: '
             for j in range(row): 
-                steps+= f'Step {x}: {new_matrix.data_set[i][j]} - ({new_matrix.data_set[i][fd]} / {new_matrix.data_set[fd][fd]}) * {new_matrix.data_set[fd][j]}'
+                steps+= f'{new_matrix.data_set[i][j]} - ({new_matrix.data_set[i][fd]} / {new_matrix.data_set[fd][fd]}) * {new_matrix.data_set[fd][j]}'
                 new_matrix.data_set[i][j] = new_matrix.data_set[i][j] - crScaler * new_matrix.data_set[fd][j]
             steps+= f'\n'
             x+=1
-    steps += f'Step {x} : '
-    product = 1
+    product = 1 
+    steps += f'Step {x} : {product} '
     for i in range(row):
-        steps += f'{product} * {new_matrix.data_set[i][i]}'
+        steps += f' * {new_matrix.data_set[i][i]}'
         product *= new_matrix.data_set[i][i] 
     steps += f'\nFinal answer: {product}'
+    return product,steps
+def matrix_inverse(matrix):
+    m = matrix
+    steps = f'Step 0 : \n{m}' 
+    new_matrix, st = matrix_transpose(m)
+    d,sd = matrix_determinant(matrix)
+    steps += f'Step 1 : Determinant of matrix\n`{sd}`\n' 
+    steps += f'Step 2 : Transpose the matrix\n`{st}` ==\n {new_matrix}\n' 
+    steps += f'Final answer = \n1/{d}\ntimes\n{new_matrix}'
     return steps
-    

@@ -69,8 +69,6 @@ def run_math_bot():
                 await ctx.send('`You can not add these matrices, check the dimensions. The Matricies must have the same number of rows and the same number of coloumns`')
         else:
             await ctx.send('There are not enough matrices')
-        
-
     @bot.command()
     async def matrixSubtract(ctx, *arr):
         l,c = matrix.make_matrices(arr)

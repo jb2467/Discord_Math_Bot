@@ -53,7 +53,7 @@ def subtract_matrices(matrices):
     matrix1 = matrices[0]
     matrix2 = matrices[1]
     new_data = []
-    steps = f'Step 0 : \n{matrix1} minus \n{matrix2}\n'
+    steps = f'Step 0 : \n{matrix1}-\n{matrix2}\n'
     i = 1
     if matrix1.row_count == matrix2.row_count and matrix1.col_count == matrix2.col_count:
         for r in range (matrix1.row_count):
@@ -69,7 +69,7 @@ def multiply_matrices(matrices):
     matrix1 = matrices[0]
     matrix2 = matrices[1]
     new_data = []
-    steps = f'Step 0 : \n{matrix1} _times_ \n{matrix2}\n'
+    steps = f'Step 0 : \n{matrix1} * \n{matrix2}\n'
     i = 1
     x = 0
     y = 0
@@ -156,5 +156,5 @@ def matrix_inverse(matrix):
     d,sd = matrix_determinant(matrix)
     steps += f'Step 1 : Determinant of matrix\n`{sd}`\n' 
     steps += f'Step 2 : Transpose the matrix\n`{st}` ==\n {new_matrix}\n' 
-    steps += f'Final answer = \n1/{d}\ntimes\n{new_matrix}'
+    steps += f'Final answer = \n1/{d}\n*\n{new_matrix}'
     return steps

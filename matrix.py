@@ -1,21 +1,21 @@
-class Matrix():
+class Matrix:
     row_count : int
     col_count : int
     data_set : list
     def __init__(self,row,col,data):
         self.row_count = row
         self.col_count = col
-        self.data_set = self.createMatrix(data)
+        self.data_set = self.create_matrix(data)
         
-    def createMatrix(self,dataList):
+    def create_matrix(self,dataList):
         mat = []
         index = 0
-        for i in range(self.row_count):
-            rowList = []
-            for j in range(self.col_count):
-                rowList.append(int(dataList[index]))
+        for _ in range(self.row_count):
+            row_list = []
+            for _ in range(self.col_count):
+                row_list.append(int(dataList[index]))
                 index += 1
-            mat.append(rowList)
+            mat.append(row_list)
         return mat
     def __str__(self) -> str:
         string = ''

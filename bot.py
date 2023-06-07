@@ -4,8 +4,8 @@ import calculator
 from matrix import Matrix
 import matrix
 
-BOT_TOKEN = ''
-CHANNEL_ID = 
+BOT_TOKEN = 'MTExMTg1NTk0MDM5NjkyNTA4MA.Gb5zdH.SGFAZRdQ4XMv-ZdOQh6LNGLmvXSlk8KDkwUAx8'
+CHANNEL_ID = 1113263431299117137
 
 bot = commands.Bot(command_prefix="!",  intents=discord.Intents.all())
 bot.remove_command('help')
@@ -116,8 +116,8 @@ def run_math_bot():
     @bot.command()
     async def matrixDeterminant(ctx, *arr):
         l,c = matrix.make_matrices(arr)
-        s = calculator.matrix_determinant(l[0])
-        await ctx.send(f'{s}')
+        p,s = calculator.matrix_determinant(l[0])
+        await ctx.send(f'{s}/n{p}')
     @bot.command()
     async def matrixInverse(ctx, *arr):
         l,c = matrix.make_matrices(arr)

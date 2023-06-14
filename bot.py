@@ -3,19 +3,28 @@ import discord
 import calculator
 from matrix import Matrix
 import matrix
+from decouple import config
 
-BOT_TOKEN = 'MTExMTg1NTk0MDM5NjkyNTA4MA.Gb5zdH.SGFAZRdQ4XMv-ZdOQh6LNGLmvXSlk8KDkwUAx8'
+
+BOT_TOKEN = config('KEY') 
 CHANNEL_ID = 1113263431299117137
 
-bot = commands.Bot(command_prefix="!",  intents=discord.Intents.all())
+bot = commands.Bot(command_prefix='!',  intents=discord.Intents.all())
 bot.remove_command('help')
-def run_math_bot():
-    
-    @bot.event
-    async def on_ready():
-        channel = bot.get_channel(CHANNEL_ID)
-        await channel.send("Hello! Math bot at your service!")
 
+def run_math_bot():
+    @bot.event
+    async def on_command_error(ctx, error):
+        if isinstance(error, commands.CommandNotFound):
+            await ctx.send("Command does not exist. Do !help to see what I can do")
+    @bot.command()
+    async def format(ctx):
+        format_basics = 'For !add, !divison, !multiply, and !subtract uses this format: Command number number number...\nEx:```!add 3 4 5\n!divison 3 4 5 6 NOTE: ((3/4)/5)/6```\n'
+        format_calculate = 'For !calculate simply put your equation\nEx:```!calculate 8/2(2+4)```\n' 
+        format_two_matrices= 'For !matrixAdd, !matrixMultiply and !matrixSubtract Give the ROWxCOLUMN of the first matrix followed by the contents from left to right, top to bottom seprated by a comma and the second matrix.Ex:```!matrixMultiply 2x3 1 2 1 3 4 1 , 3x4 5 6 1 1 7 8 1 1 1 1 1 1\nNOTE: This only allows 2 matrices, also make sure the dimensions are the same for add and subtract, and for multiply the first matrix columns are equal to the second matrix row```\n'
+        format_one_matrix = 'For !matrixDeterminant, !matrixInverse, !matrixTranspose just give the matrix\nEx: ```!matrixDeterminant 2x2 2 3 4 5```\n'
+        format_matrix_power = 'For !matrixPower give the Matrix comma power\nEx: ```!matrixPower 2x2 4 3 2 1 , 3```'
+        await ctx.send(f'{format_basics}{format_calculate}{format_two_matrices}{format_one_matrix}{format_matrix_power}')
     @bot.command()
     async def add(ctx, *arr):
         res = 0
@@ -31,16 +40,18 @@ def run_math_bot():
 
     @bot.command()
     async def division(ctx, *arr):
-        res = int(arr[0])
+        numerator = int(arr[0])
+        denominator = 1
         for i in range(1,len(arr)):
-            res = res / int(arr[i])
-        await ctx.send(f'Your answer is: {res}')
+            denominator = denominator * int(arr[i])
+        decimal = numerator/denominator
+        await ctx.send(f'Your answer is: {numerator}/{denominator} or {decimal}')
     @bot.command()
     async def help(ctx):
-        helptext = "```Here is what I can do!!! \n"
+        helptext = '```Here is what I can do!!! \n'
         for command in bot.commands:
-            helptext+=f"\t{command}\n"
-        helptext+="```"
+            helptext+=f'\t{command}\n'
+        helptext+='Check out !format first!```'
         await ctx.send(helptext)
     @bot.command()
     async def multiply(ctx, *arr):

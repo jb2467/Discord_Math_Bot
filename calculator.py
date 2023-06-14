@@ -105,9 +105,7 @@ def matrix_power_to(matrix, power):
     count = power -1
     j = 0
     for i in range (count):
-        print(i)
         l = []
-        print(m1)
         l.append(m1)
         l.append(m2)
         m1,s = multiply_matrices(l)
